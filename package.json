@@ -4,7 +4,7 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "start:server": "cd server",
+    "start:server": "cd server && npm start",
     "start:client": "cd client && npm run serve",
     "start": "concurrently \" npm run start:server \" \" npm run start:client \""
   },
