@@ -1,0 +1,20 @@
+{
+  "name": "react-chat",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "scripts": {
+    "start:server": "cd server",
+    "start:client": "cd client && npm run serve",
+    "start": "concurrently \" npm run start:server \" \" npm run start:client \""
+  },
+  "keywords": [
+    "react",
+    "chat"
+  ],
+  "author": "Vitaliy Irtlach <vitaliyirtlach@gmail.com>, ...",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
