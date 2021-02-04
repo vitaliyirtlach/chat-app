@@ -1,0 +1,8 @@
+// For vscode I recommend install a Todo+ extension for highlighting
+
+
+☐ - queue/в очереди
+✔ - done/выполнено
+✘ - cancelled/отменено
+@critical @high @low @today - order importance/порядок важостиь
+
