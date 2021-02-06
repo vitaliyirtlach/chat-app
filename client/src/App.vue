@@ -8,12 +8,19 @@
   </div>
 </template>
 <script>
-  const socket = io("http://localhost:5000")
+  // import io from "socket.io-client";
+  const socket = io("localhost:5000", {
+    // transports: ["websockets"]
+  });
 export default {
   created() {
-      socket.on('connect', function() {
-            socket.emit("message", "New Message")
+      socket.on('connect', () => {
+          console.log(socket.id)
       })
+      
+      socket.on("disconnect", () => {
+        console.log(socket.connected); // false
+      });
   }
 }
 </script>
