@@ -1,4 +1,2 @@
-// WebSocket for client
-
-// @ts-expect-error
+// @ts-ignore
 export const socket = io("http://localhost:5000")

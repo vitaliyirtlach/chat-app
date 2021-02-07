@@ -9,6 +9,15 @@
                 </div>
                 <div class="contact-status">That's awesome!</div>
             </div>
+
+            <Messages></Messages>
+            <form @submit.prevent>
+                <input type="text" 
+                    @keydown.enter="handleSubmit" 
+                    v-model="message" 
+                    placeholder="Start typing your message..." 
+                />
+            </form>
         </div>
 
         <div v-if="showContactInfo" class="user-info">
@@ -25,10 +34,22 @@
 </template>
 
 <script>
+import Messages from "@/components/Messages"
+import { socket } from '../socket'
+
 export default {
+   components: {
+       Messages
+   },
    data() {
        return {
-           showContactInfo: true
+           showContactInfo: true,
+           message: ""
+       }
+   },
+   methods: {
+       handleSubmit() {
+           socket.emit("message", this.message)
        }
    }
 }
@@ -36,6 +57,7 @@ export default {
 
 <style lang="scss" scoped>
     .chat {
+        position: relative;
         width: 80vw;
         display: flex;
         justify-content: space-between;
@@ -57,12 +79,14 @@ export default {
             }
             .contact-geo {
                 font-size: 14px;
-                color:   #abb2b9 ;
+                color: #abb2b9;
             }
         }
     }
     .messager-header {
-        padding: 50px;
+        padding-top: 50px;
+        padding-left: 50px;
+        padding-bottom: 10px;
         font-family: 'Poppins', sans-serif;
     }
     .contact-info {
@@ -94,6 +118,19 @@ export default {
         div:nth-child(odd) {
             border-bottom: 0.25px solid #abb2b9;
             border-top: 0.25px solid #abb2b9;
+        }
+    }
+    form {
+        margin-top: 1%;
+        input {
+            width: 100%;
+            border: none;
+            padding: 20px 40px;
+            background: #f0f2f5;
+            color: #9c9c9d;
+            &::placeholder {
+                color: #9c9c9d;
+            }
         }
     }
 </style>
