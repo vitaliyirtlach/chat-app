@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="home">
         <Menu />
-        <h1>Home</h1>
+        <router-view  />
     </div>
 </template>
 
@@ -11,14 +11,16 @@ import Menu from "@/components/Menu.vue"
 export default {
     components: {
         Menu
-    
-    }
+    },
 }
 </script>
 
 
 <style lang="scss" scoped>
-
+    .home {
+        display: flex;
+        background: #f7f9fa;
+    }
 </style>
 
 
