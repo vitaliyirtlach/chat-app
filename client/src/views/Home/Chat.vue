@@ -35,7 +35,7 @@
 
 <script>
 import Messages from "@/components/Messages"
-import { socket } from '../socket'
+import { socket } from '@/socket'
 
 export default {
    components: {

@@ -1,0 +1,99 @@
+form {
+    padding: 50px;
+    padding: 15% 5%;
+    height: 75vh;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .notifications {
+        position: absolute;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        text-align: center;
+        div {
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            .icon {
+                font-size: 18px;
+            }
+            .message {
+                font-size: 20px;
+            }
+        }
+        
+        .success {
+            background:  #a3e4d7;
+            color:  #117864 ;
+            .icon::before {
+                content: "✔️";
+            }
+        }
+        .error {
+            color: #922b21;
+            background: #f1948a;
+            .icon::before {
+                content: "❌";
+            }
+        }
+        .warning {
+            color:   #b7950b  ;
+            background:  #f9e79f ;
+            .icon::before {
+                content: "⚠️";
+            }
+        }
+    }
+    .field {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        .field-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+        }
+        input {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+            border-bottom: 1px solid silver;
+        }
+    }
+    .required {
+        .field-label::before {
+            content: "* ";
+            color: red;
+        }
+    }
+    .success {
+        .field-label::before {
+            content: "* ";
+            color: green;
+        }
+    }
+    .form-title {
+        font-family: 'Roboto', sans-serif;
+    }
+    .field-group {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .form-submit {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        border: none;
+        color: white;
+        background: #045fca;
+        cursor: pointer;
+    }
+
+}

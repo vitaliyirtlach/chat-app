@@ -11,12 +11,18 @@
                 <contact></contact>
                 <contact></contact>
                 <contact></contact>
+                <contact></contact>
+                <contact></contact>
+                <contact></contact>
+                <contact></contact>
         </div>
+        <button class="add-contact">Add contact</button>
     </div>
 </template>
 
 <script>
 import Contact from './Contact.vue'
+
 export default {
   components: { Contact }, 
 }
@@ -40,6 +46,9 @@ export default {
         padding-left: 20px;
         display: flex;
         justify-content: space-between;
+        .links {
+
+        }
     }
     .search {
         padding-left: 10px;
@@ -78,7 +87,13 @@ export default {
         display: flex;
         flex-direction: column;
     }
-    
+    .add-contact {
+        border: none;
+        color: white;
+        background: #1f8efa;
+        padding: 15px;
+        cursor: pointer;
+    }
 </style>
 
 
