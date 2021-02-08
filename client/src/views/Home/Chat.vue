@@ -121,7 +121,7 @@ export default {
         }
     }
     form {
-        margin-top: 1%;
+        margin-top: 2%;
         input {
             width: 100%;
             border: none;

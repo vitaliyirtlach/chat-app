@@ -9,12 +9,6 @@
         </div>
         <div class="contacts">
                 <contact></contact>
-                <contact></contact>
-                <contact></contact>
-                <contact></contact>
-                <contact></contact>
-                <contact></contact>
-                <contact></contact>
         </div>
         <button class="add-contact">Add contact</button>
     </div>

@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form class="user-form">
             <div class="notifications">
                 <!-- 
                 <div class="warning"> success | error | warning 
@@ -21,6 +21,10 @@
             <div class="field required">
                 <div class="field-label">Your email Address</div>
                 <input type="text" placeholder="Email Address" />
+            </div>
+            <div class="field required">
+                <div class="field-label">Where you live?</div>
+                <input type="text" placeholder="Country, City" />
             </div>
             <div class="field-group">
                 <div class="field required">

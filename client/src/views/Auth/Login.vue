@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form class="user-form">
             <div class="notifications">
                 <!-- 
                 <div class="warning"> success | error | warning 
