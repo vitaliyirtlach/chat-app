@@ -1,24 +1,36 @@
-# client
+<p align="center">
+  <a href="https://v3.vuejs.org/" target="blank"><img src="https://www.fullstackpython.com/img/logos/vuejs-wide.png" width="320" alt="Vue Logo" /></a>
+</p>
 
-## Project setup
-```
-npm install
-```
+<p align="center">Vue is a progressive framework for building user interfaces.</p>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Description 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+[Vue](https://github.com/vuejs/vue) is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries 
 
-### Run your unit tests
-```
-npm run test:unit
+## Installation
+
+```bash
+$ npm install
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Running the app
+
+```bash
+# development
+$ npm run serve
+
+# production mode
+$ npm run build
+```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test:unit
+```
+
+## Support
+
+Vue.js is an MIT licensed open source project and completely free to use. However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing.

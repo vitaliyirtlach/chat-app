@@ -5,6 +5,7 @@ import WelcomeToChat from "@/components/WelcomeToChat.vue"
 import Login from "@/views/Auth/Login.vue"
 import Register from "@/views/Auth/Register.vue"
 import Auth from "@/views/Auth/Auth.vue"
+import Settings from "@/views/Settings/Settings.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -39,7 +40,12 @@ const routes: Array<RouteRecordRaw> = [
         component: Register
       },
     ]
-  }
+  },
+  {
+    path: "/settings",
+    component: Settings
+  },
+
   
 ]
 

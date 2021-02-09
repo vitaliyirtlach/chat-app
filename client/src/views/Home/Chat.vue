@@ -10,7 +10,8 @@
                 <div class="contact-status">That's awesome!</div>
             </div>
 
-            <Messages></Messages>
+            <Messages />
+
             <form @submit.prevent>
                 <input type="text" 
                     @keydown.enter="handleSubmit" 
@@ -25,9 +26,18 @@
             <div class="contact-name">Alex Castiglia</div>
             <div class="contact-geo">Staten Island. NY</div>
             <div class="additional-contacts">
-                <div>a.castiglia@gmail.com</div>
-                <div>589.278.9949</div>
-                <div>alexcastiglia.com</div>
+                <div>
+                    <i class="bi bi-envelope"></i>
+                    <div> a.castiglia@gmail.com </div>
+                </div>
+                <div>
+                    <i class="bi bi-telephone-fill"></i>
+                    <div>589.278.9949</div>
+                </div>
+                <div>
+                    <i class="bi bi-globe"></i>
+                    <div>alexcastiglia.com</div>
+                </div>
             </div>
         </div>
     </div>

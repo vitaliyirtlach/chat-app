@@ -2,6 +2,9 @@
     <div class="container">
         <div class="profile">
             <div class="user-name">Ryan Johnston</div>
+            <div class="links">
+                <router-link to="/settings" class="bi bi-gear"></router-link>
+            </div>
         </div>
         <div class="search">
             <input type="search" placeholder="Search" />
@@ -38,10 +41,17 @@ export default {
         font-weight: 500;
         padding-top: 75px;
         padding-left: 20px;
+        padding-right: 20px;
         display: flex;
+        align-items: center;
         justify-content: space-between;
         .links {
-
+            display: flex;
+            align-items: center;
+            a {
+                color: white;
+                cursor: pointer;
+            }
         }
     }
     .search {
