@@ -122,7 +122,7 @@ export default {
         div {
             display: flex;
             align-items: center;
-            padding: 25px;
+            padding: 15px;
             justify-content: flex-start;
         }
         div:nth-child(odd) {

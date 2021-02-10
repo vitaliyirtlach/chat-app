@@ -20,7 +20,7 @@
             </div>
             <div class="field required">
                 <div class="field-label">Your email Address</div>
-                <input type="text" placeholder="Email Address" />
+                <input type="email" placeholder="Email Address" />
             </div>
             <div class="field required">
                 <div class="field-label">Where you live?</div>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="field required">
                     <div class="field-label">Confirm Password</div>
-                    <input type="text" placeholder="Confirm Password" />
+                    <input type="password" placeholder="Confirm Password" />
                 </div>
             </div>
             <button class="form-submit">Register</button>

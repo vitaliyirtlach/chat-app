@@ -20,7 +20,7 @@
                 </div>
                 <div class="field required">
                     <div class="field-label">Confirm Password</div>
-                    <input type="text" placeholder="Confirm Password" />
+                    <input type="password" placeholder="Confirm Password" />
                 </div>
             </div>
             <button class="form-submit">Log In</button>

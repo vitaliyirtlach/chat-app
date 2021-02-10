@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="menu-container">
         <div class="profile">
             <div class="user-name">Ryan Johnston</div>
             <div class="links">
@@ -27,7 +27,7 @@ export default {
 
 
 <style lang="scss" scoped>
-    .container {
+    .menu-container {
         width: 20vw;
         height: 100vh;
         background: #242e42;
