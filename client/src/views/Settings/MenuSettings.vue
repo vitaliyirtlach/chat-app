@@ -41,6 +41,7 @@ export default {
             padding: 15px;
             font-size: 18px;
             color: silver;
+            font-family: 'Poppins', sans-serif;
         }
         a.active {
             color: black;

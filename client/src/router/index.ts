@@ -6,6 +6,7 @@ import Login from "@/views/Auth/Login.vue"
 import Register from "@/views/Auth/Register.vue"
 import Auth from "@/views/Auth/Auth.vue"
 import Settings from "@/views/Settings/Settings.vue"
+import UserInfo from "@/views/Settings/UserInfo.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
     children: [
       {
-        path: "/",
+        path: "",
         component: WelcomeToChat
       },
       {
@@ -43,7 +44,12 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/settings",
-    component: Settings
+    component: Settings,
+    children: [
+      {
+        path: "",
+        component: UserInfo
+      }]
   },
 
   

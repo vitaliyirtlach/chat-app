@@ -37,6 +37,8 @@ export default {
     }
     .container {
         padding: 0 20px;
+        display: flex;
+        flex-wrap: wrap;
     }
     .current-user {
         display: flex;

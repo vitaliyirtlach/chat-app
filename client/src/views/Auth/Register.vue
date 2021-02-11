@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import "@/utils/FormStyles.scss"
-
 export default {
     
 }

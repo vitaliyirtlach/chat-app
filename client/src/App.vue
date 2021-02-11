@@ -4,7 +4,7 @@
 
 <script>
 import {socket} from "./socket"
-
+import "@/utils/FormStyles.scss"
 socket.on("connect", () => {
   console.log(socket.id)
 })
