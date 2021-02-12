@@ -43,7 +43,6 @@ export default {
     .current-user {
         display: flex;
         align-items: center;
-        font-family: 'Poppins', sans-serif;
         justify-content: space-between;
         img {
             width: 40px;

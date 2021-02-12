@@ -1,0 +1,25 @@
+// Colors
+
+$theme-color: #045fca;
+$online-color: #28b463;
+$offline-color: #e74c3c;
+
+@mixin warning {
+    color:   #b7950b;
+    background:  #f9e79f;
+}
+
+@mixin success  {
+    background:  #a3e4d7;
+    color:  #117864;
+}
+
+@mixin error {
+    background:  #a3e4d7;
+    color:  #117864;
+}
+
+// Fonts
+$poppins-font: 'Poppins', sans-serif;
+$roboto-font: 'Roboto', sans-serif;
+$hammersmith-font: 'Hammersmith One', sans-serif;

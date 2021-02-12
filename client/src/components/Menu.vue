@@ -27,6 +27,8 @@ export default {
 
 
 <style lang="scss" scoped>
+    @import "../root";
+
     .menu-container {
         width: 20vw;
         height: 100vh;
@@ -36,7 +38,6 @@ export default {
         flex-direction: column;
     }
     .profile {
-        font-family: 'Poppins', sans-serif;
         font-size: 22.5px;
         font-weight: 500;
         padding-top: 75px;
@@ -57,7 +58,6 @@ export default {
     .search {
         padding-left: 10px;
         padding-top: 25px;
-        font-family: 'Poppins', sans-serif;
         display: flex;
         padding: 10px 20px;
         margin-top: 30px;
@@ -74,7 +74,7 @@ export default {
         }
         button {
             color: white;
-            background: #1f8efa;
+            background: $theme-color;
             border: none;
             font-size: 16px;
             cursor: pointer;
@@ -94,7 +94,7 @@ export default {
     .add-contact {
         border: none;
         color: white;
-        background: #1f8efa;
+        background: $theme-color;
         padding: 15px;
         cursor: pointer;
     }

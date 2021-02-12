@@ -12,6 +12,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../root";
+
     .welcome {
         width: 80vw;
         display: flex;
@@ -19,7 +21,7 @@ export default {
         align-items: center;
         flex-direction: column;
         text-align: center;
-        font-family: 'Roboto', sans-serif;
+        font-family: $roboto-font;
     }
     .title {
         font-size: 70px;

@@ -80,7 +80,6 @@ export default {
             display: flex;
             text-align: center;
             flex-direction: column;
-            font-family: 'Poppins', sans-serif;
             img {
                 border-radius: 150px;
                 width: 250px;
@@ -97,7 +96,6 @@ export default {
         padding-top: 50px;
         padding-left: 50px;
         padding-bottom: 10px;
-        font-family: 'Poppins', sans-serif;
     }
     .contact-info {
         display: flex;

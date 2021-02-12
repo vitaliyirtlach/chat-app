@@ -51,13 +51,11 @@ export default {
     }
 
     .contact-name {
-        font-family: 'Poppins', sans-serif;
         color: white;
         margin-left: 20px;
     }
     .contact-message {
         font-size: 14px;
-        font-family: 'Poppins', sans-serif;
         color:  #d5d8dc;
         margin-top: 5px;
     }
@@ -68,7 +66,6 @@ export default {
         position: absolute;
         top: 10px;
         right: 10px;
-        font-family: 'Poppins', sans-serif;
         font-size: 12px;
         background: #e74c3c;
         color: white;

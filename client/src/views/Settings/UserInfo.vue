@@ -49,6 +49,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../../root";
+    
     .settings-user-info {
         width: 77vw;
     }
@@ -72,13 +74,16 @@ export default {
             border-radius: 100px;
         }
         .settings-edit {
-            padding: 7.5px;
+            padding: 5px 10px 7.5px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
             color: white;
-            border-radius: 50px;
-            background: #045fca;
+            border-radius: 100%;
+            background: $theme-color;
             position: absolute;
-            bottom: 7.5px;
+            bottom: 10px;
             right: 7.5px;
         }
     }
@@ -88,7 +93,7 @@ export default {
             margin-left: 15px;
         }
         .general-username {
-            font-family: 'Roboto', sans-serif;
+            font-family: $roboto-font;
             font-size: 24px;
             padding: 5px;
         }

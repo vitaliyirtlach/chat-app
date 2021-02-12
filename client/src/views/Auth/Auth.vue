@@ -22,6 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../../root";
     .auth {
         width: 100vw;
         display: flex;
@@ -42,7 +43,7 @@ export default {
                 right: 0;
                 color: white;
                 font-size: 45px;
-                font-family: 'Hammersmith One', sans-serif;
+                font-family: $hammersmith-font;
             }
         }
         .auth-container {
@@ -57,12 +58,11 @@ export default {
                 }
                 a.active {
                     color: white;
-                    background: #0257c0;
+                    background: $theme-color;
                 }
                 a {
                     border: 0.5px solid silver;
                     color: black;
-                    font-family: 'Poppins', sans-serif;
                     padding: 5px 10px;
                 }
             }

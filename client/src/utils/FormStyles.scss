@@ -1,3 +1,5 @@
+@import "../root";
+
 .user-form {
     padding: 50px;
     display: flex;
@@ -23,22 +25,19 @@
         }
         
         .success {
-            background:  #a3e4d7;
-            color:  #117864 ;
+            @include success;
             .icon::before {
                 content: "✔️";
             }
         }
         .error {
-            color: #922b21;
-            background: #f1948a;
+            @include error;
             .icon::before {
                 content: "❌";
             }
         }
         .warning {
-            color:   #b7950b  ;
-            background:  #f9e79f ;
+            @include warning;
             .icon::before {
                 content: "⚠️";
             }
@@ -49,7 +48,7 @@
         padding: 10px;
         margin-top: 10px;
         .field-label {
-            font-family: 'Roboto', sans-serif;
+            font-family: $roboto-font;
             font-size: 18px;
         }
         input {
@@ -74,7 +73,7 @@
         }
     }
     .form-title {
-        font-family: 'Roboto', sans-serif;
+        font-family: $roboto-font;
     }
     .field-group {
         width: 100%;
@@ -85,11 +84,11 @@
         width: 100%;
         text-align: center;
         padding: 20px;
-        font-family: 'Roboto', sans-serif;
+        font-family: $roboto-font;
         font-size: 20px;
         border: none;
         color: white;
-        background: #045fca;
+        background: $theme-color;
         cursor: pointer;
     }
 

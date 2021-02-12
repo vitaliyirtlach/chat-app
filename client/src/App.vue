@@ -19,11 +19,14 @@ export default {
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
   
+  @import "root";
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    font-family: $poppins-font;
   }
   body {
     overflow: hidden;
@@ -37,9 +40,9 @@ export default {
     border-radius: 50px;
   }
   .contact-status-online {
-    background:  #28b463;
+    background:  $online-color;
   }
   .contact-status-offline {
-      background:  #e74c3c;
+      background:  $offline-color;
   }
 </style>

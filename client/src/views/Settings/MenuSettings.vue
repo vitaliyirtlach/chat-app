@@ -16,7 +16,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped> 
+    @import "../../root";
     .menu-settings {
         position: relative;
         width: 20vw;
@@ -25,7 +26,6 @@ export default {
         h1 {
              text-align: center;
             padding: 20px 0;
-            font-family: 'Poppins', sans-serif;
         }
     }
     .links {
@@ -41,11 +41,10 @@ export default {
             padding: 15px;
             font-size: 18px;
             color: silver;
-            font-family: 'Poppins', sans-serif;
         }
         a.active {
             color: black;
-            border-left: 3px solid #1f8efa;
+            border-left: 3px solid $theme-color;
         }
     }
     .logout {
@@ -57,7 +56,6 @@ export default {
         text-align: center;
         color: red;
         font-size: 16px;
-        font-family: 'Poppins', sans-serif;
         cursor: pointer;
     }
 </style>
