@@ -1,5 +1,5 @@
 {
-  "name": "react-chat",
+  "name": "vue-chat-app",
   "version": "1.0.0",
   "description": "",
   "private": "true",
@@ -9,7 +9,7 @@
     "start": "concurrently \" npm run start:server \" \" npm run start:client \""
   },
   "keywords": [
-    "react",
+    "vue",
     "chat"
   ],
   "author": "Vitaliy Irtlach <vitaliyirtlach@gmail.com>, ...",

@@ -10,7 +10,7 @@
                 <div class="general-location">Island, NY</div>
             </div>
         </div>
-        <form class="user-form">
+        <form class="settings-form">
             <div class="field-group">
                 <div class="field">
                     <div class="field-label">First name</div>
@@ -50,7 +50,9 @@ export default {
 
 <style lang="scss" scoped>
     @import "../../root";
-    
+    .settings-form {
+        height: 60%;
+    }
     .settings-user-info {
         width: 77vw;
     }

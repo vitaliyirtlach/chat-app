@@ -7,9 +7,7 @@
     "database": "vue-chat-app",
     "synchronize": true,
     "logging": false,
-    "entities": [
-       "src/entity/**/*.ts"
-    ],
+    "entities": ["src/**/*.entity.ts"],
     "migrations": [
        "src/migration/**/*.ts"
     ],

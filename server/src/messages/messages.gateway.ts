@@ -1,6 +1,5 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer, MessageBody, ConnectedSocket } from "@nestjs/websockets";
-import { Socket } from "dgram";
-import { Server } from "socket.io";
+import { Server, Socket } from "socket.io";
 
   @WebSocketGateway()
   export class MessagesGateway {
