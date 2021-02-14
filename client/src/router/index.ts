@@ -7,6 +7,7 @@ import Register from "@/views/Auth/Register.vue"
 import Auth from "@/views/Auth/Auth.vue"
 import Settings from "@/views/Settings/Settings.vue"
 import UserInfo from "@/views/Settings/UserInfo.vue"
+import store from '@/store'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -34,10 +35,12 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "login",
+        name: "Login",
         component: Login
       },
       {
         path: "register",
+        name: "Register",
         component: Register
       },
     ]
@@ -58,6 +61,11 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Register' && to.name !== "Login" && !store.state.isAuth) next({ name: 'Register' })
+  else next()
 })
 
 export default router

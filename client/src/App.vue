@@ -3,11 +3,13 @@
 </template>
 
 <script>
-import {socket} from "./socket"
 import "@/utils/FormStyles.scss"
+import {socket} from "./socket"
+
 socket.on("connect", () => {
   console.log(socket.id)
 })
+
 export default {
   
 }

@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Group } from "./Group"
 
 @Entity()
@@ -11,19 +11,24 @@ export class User extends BaseEntity {
 
     @Column()
     lastName: string
+    
+    @Column()
+    password: string
 
     @Column()
     email: string
 
     @Column()
+    location: string
+    
+    @ManyToMany(() => Group, group => group.users)
+    @JoinTable()
+    groups: Group[]
+   
+    @Column({nullable: true})
     phone: string
 
-    @Column()
-    location: string
+    @Column({nullable: true})
+    website: string
 
-    @Column()
-    website?: string
-
-    @ManyToMany(() => Group, group => group.users)
-    groups: Group[]
 }
