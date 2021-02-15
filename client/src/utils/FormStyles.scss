@@ -91,6 +91,10 @@ form {
         color: white;
         background: $theme-color;
         cursor: pointer;
+        &:disabled {
+            background: silver;
+            color: black;
+        }
     }
 
 }
