@@ -1,5 +1,5 @@
 <template>
-    <form class="user-form">
+    <form class="user-form" @submit.prevent="register">
             <div class="notifications">
                 <!-- 
                 <div class="warning"> success | error | warning 
@@ -36,11 +36,13 @@
                     <input type="password" @input="changeField($event)" name="confirmPassword" placeholder="Confirm Password" />
                 </div>
             </div>
-            <button class="form-submit" :disabled="!formValuesIsRight">Register</button>
+            <button class="form-submit" type="submit" :disabled="!formValuesIsRight">Register</button>
     </form>
 </template>
 
 <script>
+import {http} from "@/api/http"
+import axios from "axios"
 
 export default  { 
      data() {
@@ -67,8 +69,19 @@ export default  {
             ) {
                 this.formValuesIsRight = true
             }            
+        },
+        async register() {
+            const body = {
+                firstName: this.firstName,
+                lastName: this.lastName,
+                location: this.location,
+                email: this.email,
+                password: this.password
+            }
+            const {data} = await axios.post("http://localhost:5000/auth/register", body)
+            console.log(data)
         }
-    }
+    },
 }
 </script>
 
