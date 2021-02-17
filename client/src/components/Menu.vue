@@ -1,7 +1,7 @@
 <template>
     <div class="menu-container">
         <div class="profile">
-            <div class="user-name">Ryan Johnston</div>
+            <div class="user-name">{{$store.state.firstName}}  {{$store.state.lastName}}</div>
             <div class="links">
                 <router-link to="/settings" class="bi bi-gear"></router-link>
             </div>
@@ -11,14 +11,18 @@
             <button>Search</button>
         </div>
         <div class="contacts">
-                <contact></contact>
+            <contact v-for="group of $store.state.groups" :key="group.id" />
+            <contact></contact>
+            <contact></contact>
+            <contact></contact>
+            <contact></contact>
         </div>
         <button class="add-contact">Add contact</button>
     </div>
 </template>
 
 <script>
-import Contact from './Contact.vue'
+import Contact from './Group.vue'
 
 export default {
   components: { Contact }, 

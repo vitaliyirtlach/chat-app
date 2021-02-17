@@ -1,13 +1,5 @@
-import { Controller, Get, Req } from '@nestjs/common';
-import { User } from './entity/User';
+import { Controller } from '@nestjs/common';
 
-@Controller("")
-export class AppController {
-  @Get()
-  async checkAuth(@Req() req: any) {
-      if (req.userId) {
-          return await User.findOne(req.userId) 
-      }
-  }
-}
+@Controller()
+export class AppController {}
  

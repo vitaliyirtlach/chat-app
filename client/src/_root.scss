@@ -7,16 +7,28 @@ $offline-color: #e74c3c;
 @mixin warning {
     color:   #b7950b;
     background:  #f9e79f;
+    .icon::before {
+        content: "⚠️";
+        cursor: pointer;
+    }
 }
 
 @mixin success  {
     background:  #a3e4d7;
     color:  #117864;
+    .icon::before {
+        content: "✔️";
+        cursor: pointer;
+    }
 }
 
 @mixin error {
-    background:  #a3e4d7;
-    color:  #117864;
+    background:#e6b0aa;
+    color:  #922b21;
+    .icon::before {
+        content: "❌";
+        cursor: pointer;
+    }
 }
 
 // Fonts

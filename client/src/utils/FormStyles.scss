@@ -27,21 +27,12 @@ form {
         
         .success {
             @include success;
-            .icon::before {
-                content: "✔️";
-            }
         }
         .error {
             @include error;
-            .icon::before {
-                content: "❌";
-            }
         }
         .warning {
             @include warning;
-            .icon::before {
-                content: "⚠️";
-            }
         }
     }
     .field {

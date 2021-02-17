@@ -1,11 +1,10 @@
 <template>
     <form class="user-form" @submit.prevent="register">
             <div class="notifications">
-                <!-- 
-                <div class="warning"> success | error | warning 
-                    <div class="icon"></div> 
-                    <div class="message">Message</div>
-                </div> -->
+                <div class="error" v-if="error.length">
+                    <div @click="error = ''" class="icon"></div> 
+                    <div class="message">{{error}}</div>
+                </div>
             </div>
             <h1 class="form-title">Register</h1>
             <div class="field-group">
@@ -41,7 +40,6 @@
 </template>
 
 <script>
-import {http} from "@/api/http"
 import axios from "axios"
 
 export default  { 
@@ -53,7 +51,8 @@ export default  {
             location: "",
             password: "",
             confirmPassword: "",
-            formValuesIsRight: false
+            formValuesIsRight: false,
+            error: ""
         }
     },
     methods: {
@@ -79,7 +78,11 @@ export default  {
                 password: this.password
             }
             const {data} = await axios.post("http://localhost:5000/auth/register", body)
-            console.log(data)
+            if ("message" in data) {
+                this.error = data.message
+            } else {
+                this.$store.commit("setAuth", {...data, isAuth: true})
+            }
         }
     },
 }

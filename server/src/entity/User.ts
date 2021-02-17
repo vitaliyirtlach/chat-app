@@ -24,6 +24,10 @@ export class User extends BaseEntity {
     @ManyToMany(() => Group, group => group.users)
     @JoinTable()
     groups: Group[]
+    
+    @Column({nullable: true})
+    avatar: string
+
    
     @Column({nullable: true})
     phone: string
