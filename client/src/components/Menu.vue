@@ -1,4 +1,6 @@
 <template>
+    <div>
+        <add-contact v-on:modal-close="isOpen = false" :isOpen="isOpen"/>
     <div class="menu-container">
         <div class="profile">
             <div class="user-name">{{$store.state.firstName}}  {{$store.state.lastName}}</div>
@@ -17,15 +19,22 @@
             <contact></contact>
             <contact></contact>
         </div>
-        <button class="add-contact">Add contact</button>
+        <button class="add-contact" @click="isOpen = true">Add contact</button>
+    </div>
     </div>
 </template>
 
 <script>
+import AddContact from './AddContact.vue'
 import Contact from './Group.vue'
 
 export default {
-  components: { Contact }, 
+  components: { Contact, AddContact }, 
+  data() {
+      return {
+          isOpen: false
+      }
+  }
 }
 </script>
 
