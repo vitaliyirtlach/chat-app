@@ -2,49 +2,79 @@
     <div class="settings-user-info">
         <div class="settings-user-general-info">
             <div class="settings-avatar">
-                <img src="https://ideapod.com/wp-content/uploads/2017/06/stencil.facebook-post-20.jpg" />
-                <div class="settings-edit"><i class="bi bi-pencil"></i></div>
+                <img :src="user.avatar" />
+                <input type="file" @change="changePhoto($event)" ref="chooseNewPhoto" style="display: none" />
+                <div class="settings-edit" @click="$refs.chooseNewPhoto.click()"><i class="bi bi-pencil"></i></div>
             </div>
             <div class="general-info">
-                <div class="general-username">Alex Castiglia</div>
-                <div class="general-location">Island, NY</div>
+                <div class="general-username">{{ $store.state.firstName}} {{ $store.state.lastName }}</div>
+                <div class="general-location">{{ $store.state.location }}</div>
             </div>
         </div>
-        <form class="settings-form">
+        <form class="settings-form" @submit.prevent="updateProfile">
             <div class="field-group">
                 <div class="field">
                     <div class="field-label">First name</div>
-                    <input type="text" placeholder="First name" />
+                    <input v-model="user.firstName" placeholder="First name" />
                 </div>
                 <div class="field">
                     <div class="field-label">Last name</div>
-                    <input type="text" placeholder="Last name" />
+                    <input v-model="user.lastName" placeholder="Last name" />
                 </div>
             </div>
             <div class="field-group">
                 <div class="field">
                     <div class="field-label">Email</div>
-                    <input type="text" placeholder="First name" />
+                    <input v-model="user.email" placeholder="Email" />
                 </div>
                 <div class="field">
                     <div class="field-label">Phone Number</div>
-                    <input type="text" placeholder="Last name" />
+                    <input v-model="user.phone" placeholder="Phone number" />
                 </div>
             </div>
             <div class="field-group">
                 <div class="field">
                     <div class="field-label">Location</div>
-                    <input type="text" placeholder="First name" />
+                    <input v-model="user.location" placeholder="Location: Country, City" />
+                </div>
+                <div class="field">
+                    <div class="field-label">Website</div>
+                    <input v-model="user.website" placeholder="Location: Country, City" />
                 </div>
             </div>
-            <button class="form-submit">Save changes</button>
+            <button class="form-submit" type="submit">Save changes</button>
         </form>
     </div>
 </template>
 
 <script>
+import {readURL} from "@/utils/readURL.ts"
+import {http} from "@/api/http"
 export default {
-    
+    data() {
+        return {
+            user: {
+                firstName: this.$store.state.firstName,
+                lastName: this.$store.state.lastName,
+                email: this.$store.state.email,
+                phone: this.$store.state.phone,
+                location: this.$store.state.location,
+                avatar: this.$store.state.avatar,
+                website: this.$store.state.website
+            }
+        }
+    },
+    methods: {
+        async updateProfile() {
+            const { data } = await http.put("/profile/update", this.user)
+            this.$store.commit("setUserData", data, false)
+        },
+        changePhoto({target}) {
+            readURL(target).then(url => {
+                this.user.avatar = url
+            })
+        }
+    }
 }
 </script>
 

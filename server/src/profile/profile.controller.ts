@@ -7,7 +7,7 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 export class ProfileController {
     @Put("update") 
     async updateUserProfile(@Body() updateUserDto: UpdateUserDto, @Req() req: Request) {
-        const {firstName, lastName, website, location, phone} = updateUserDto
+        const {firstName, lastName, website, location, phone, avatar} = updateUserDto
 
         const user: User = (req as any).user
         user.firstName = firstName
@@ -15,6 +15,7 @@ export class ProfileController {
         user.website = website
         user.location = location
         user.phone = phone
+        user.avatar = avatar
         user.save()
         return user 
     }

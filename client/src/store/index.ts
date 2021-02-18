@@ -16,8 +16,11 @@ const store = createStore({
     state: defaultState,
     
     mutations: {
-        setAuth(state, payload) {
-            store.replaceState(payload)
+        setUserData(state, payload) {
+            store.replaceState({isAuth: state.isAuth, ...payload})
+        },
+        setAuth(state, isAuth = false) {
+            state.isAuth = isAuth
             router.push("/")
         }
     }

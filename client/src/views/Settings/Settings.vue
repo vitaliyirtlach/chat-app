@@ -3,8 +3,8 @@
         <header>
             <router-link to="/"><i class="bi bi-house-door-fill"></i> Home</router-link>
             <div class="current-user">
-                <img src="https://ideapod.com/wp-content/uploads/2017/06/stencil.facebook-post-20.jpg" />
-                <div>Alex Castiglia</div>
+                <img :src="$store.state.avatar" />
+                <div>{{$store.state.firstName}} {{$store.state.lastName}}</div>
             </div>
         </header>
         <div class="container">

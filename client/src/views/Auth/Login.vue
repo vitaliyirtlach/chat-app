@@ -21,7 +21,9 @@
 </template>
 
 <script>
-import axios from "axios"
+import {http} from "@/api/http"
+
+
 export default {
     data() {
         return {
@@ -37,11 +39,12 @@ export default {
                 email: this.email,
                 password: this.password
             }
-            const {data} = await axios.post("http://localhost:5000/auth/login", body)
+            const {data} = await http.post("/auth/login", body)
             if ("message" in data) {
                 this.error = data.message
             } else {
-                this.$store.commit("setAuth", {...data, isAuth: true})
+                this.$store.commit("setAuth", true)
+                this.$store.commit("setUserData", data)
             }
         },
         changeField(event) {

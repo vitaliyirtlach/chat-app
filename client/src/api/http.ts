@@ -1,5 +1,6 @@
-import * as axios from "axios"
+import axios from "axios"
 
-export const http = axios.default({
-    url: "http://localhost:5000"
+export const http = axios.create({
+    baseURL: "http://localhost:5000",
+    withCredentials: true
 }) 
