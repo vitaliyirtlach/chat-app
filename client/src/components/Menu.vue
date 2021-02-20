@@ -13,11 +13,8 @@
             <button>Search</button>
         </div>
         <div class="contacts">
-            <contact v-for="group of $store.state.groups" :key="group.id" />
-            <contact></contact>
-            <contact></contact>
-            <contact></contact>
-            <contact></contact>
+            <contact v-for="group of $store.state.groups" :key="group.id" 
+            :user="group.users.find((u) => u.userId !== $store.state.userId)" />
         </div>
         <button class="add-contact" @click="isOpen = true">Add contact</button>
     </div>

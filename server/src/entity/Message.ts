@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Group } from "./Group";
 import { User } from "./User";
 
@@ -6,6 +6,9 @@ import { User } from "./User";
 export class Message extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
+
+    @Column()
+    text: string
 
     @ManyToOne(() => User, user => user.messages)
     author: User

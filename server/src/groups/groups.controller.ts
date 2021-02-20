@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req } from "@nestjs/common";
 import { Request } from "express";
 import { Group } from "src/entity/Group";
 import { User } from "src/entity/User";
@@ -6,6 +6,11 @@ import { CreateGroupDto } from "./dto/create-group.dto";
 
 @Controller("groups")
 export class GroupsController {
+    @Get() 
+    async getAllGroups(@Req() req: any) {
+        return await User.find({relations: ["groups"]})
+    } 
+
     @Post("create") 
     async createGroup(@Body() createGroupDto: CreateGroupDto, @Req() req: Request) {
         const {name, user_email} = createGroupDto

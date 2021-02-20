@@ -5,7 +5,7 @@ const defaultState = {
     isAuth: false,
     userId: null,
     avatar: null,
-    groups: null,
+    groups: [],
     email: null,
     location: null,
     firstName: null,
@@ -22,6 +22,9 @@ const store = createStore({
         setAuth(state, isAuth = false) {
             state.isAuth = isAuth
             router.push("/")
+        },
+        newGroup(state, group) {
+            state.groups.push(group as never)
         }
     }
 })

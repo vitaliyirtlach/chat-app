@@ -1,21 +1,21 @@
 <template>
     <router-link to="/t/34894234" class="contact" active-class="contact-active">
         <div class="contact-avatar">
-            <img src="https://ideapod.com/wp-content/uploads/2017/06/stencil.facebook-post-20.jpg" />
+            <img :src="user.avatar" />
             <!-- <div class="contact-status-online"></div> -->
             <div class="contact-status-offline"></div>
         </div>
         <div class="contact-info">
-            <div class="contact-name">Jennifer Spade</div>
+            <div class="contact-name">{{ user.firstName }} {{ user.lastName }}</div>
             <div class="contact-message">How are you?</div>
         </div>
-        <div class="notifications">99+</div>
+        <!-- <div class="notifications">99+</div> -->
     </router-link>
 </template>
 
 <script>
 export default {
-    props: ["id"]
+    props: ["id", "user"]
 }
 </script>
 
