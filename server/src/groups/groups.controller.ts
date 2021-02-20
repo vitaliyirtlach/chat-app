@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Req } from "@nestjs/common";
 import { Request } from "express";
 import { Group } from "src/entity/Group";
 import { User } from "src/entity/User";
@@ -6,11 +6,6 @@ import { CreateGroupDto } from "./dto/create-group.dto";
 
 @Controller("groups")
 export class GroupsController {
-    @Get() 
-    async getAllGroups(@Req() req: any) {
-        return await User.find({relations: ["groups"]})
-    } 
-
     @Post("create") 
     async createGroup(@Body() createGroupDto: CreateGroupDto, @Req() req: Request) {
         const {name, user_email} = createGroupDto
@@ -19,8 +14,7 @@ export class GroupsController {
             user = await User.findOne({
                 where: {
                     email: user_email
-                },
-                relations: ["groups"]
+                }
 
             })
         } else {
@@ -29,8 +23,7 @@ export class GroupsController {
                 where: {
                     firstName: firstName,
                     lastName: lastName 
-                },
-                relations: ["groups"]
+                }
             })
         }
         const group = new Group()
@@ -38,5 +31,9 @@ export class GroupsController {
         group.users = users
         await group.save();
         return group
+    }
+    @Get("/:id")
+    async getGroupById(@Param('id') id: string) {
+        return await Group.findOne(id, {relations: ["users", "messages"]})
     }
 }

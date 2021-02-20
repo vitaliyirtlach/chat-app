@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/t/34894234" class="contact" active-class="contact-active">
+    <router-link :to="'/t/' + id" class="contact" active-class="contact-active">
         <div class="contact-avatar">
             <img :src="user.avatar" />
             <!-- <div class="contact-status-online"></div> -->
@@ -9,7 +9,6 @@
             <div class="contact-name">{{ user.firstName }} {{ user.lastName }}</div>
             <div class="contact-message">How are you?</div>
         </div>
-        <!-- <div class="notifications">99+</div> -->
     </router-link>
 </template>
 

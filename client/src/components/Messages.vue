@@ -1,6 +1,6 @@
 <template>
     <div class="messages">
-        <div class="message">
+        <!-- <div class="message">
             <img src="https://ideapod.com/wp-content/uploads/2017/06/stencil.facebook-post-20.jpg" />
             <div class="message-body">
                 <div class="message-info">
@@ -15,8 +15,8 @@
                     f sdf
                 </div>
             </div> 
-        </div>
-        <div class="my-message">
+        </div> -->
+        <!-- <div class="my-message">
             <img src="https://ideapod.com/wp-content/uploads/2017/06/stencil.facebook-post-20.jpg" />
             <div class="message-body">
                 <div class="message-info">
@@ -31,13 +31,13 @@
                     f sdf
                 </div>
             </div> 
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
 export default {
-    
+    props: ["messages"]
 }
 </script>
 

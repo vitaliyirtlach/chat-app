@@ -3,14 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { GroupsModule } from './groups/groups.module';
-import { MessagesModule } from './messages/messages.module';
 import { AuthMiddleware } from './middleware/auth.middleware';
 import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(), 
-    MessagesModule,
     AuthModule,
     ProfileModule,
     GroupsModule

@@ -3,40 +3,40 @@
         <div class="messager">
             <div class="messager-header">
                 <div class="contact-info">
-                    <div @click="showContactInfo = !showContactInfo" class="contact-name">Alex Castiglia</div>
+                    <div @click="showContactInfo = !showContactInfo" class="contact-name">{{ contactInfo.firstName }} {{ contactInfo.lastName }}</div>
                     <div class="contact-status-online"></div>
                     <!-- <div class="contact-status-offline"></div> -->
                 </div>
-                <div class="contact-status">That's awesome!</div>
+                <!-- <div class="contact-status">That's awesome!</div> -->
             </div>
 
-            <Messages />
+            <Messages :messages="messages"/>
 
-            <form @submit.prevent>
+          
                 <input type="text" 
                     @keydown.enter="handleSubmit" 
                     v-model="message" 
                     placeholder="Start typing your message..." 
                 />
-            </form>
+           
         </div>
 
         <div v-if="showContactInfo" class="user-info">
-            <img src="https://ideapod.com/wp-content/uploads/2017/06/stencil.facebook-post-20.jpg" />
-            <div class="contact-name">Alex Castiglia</div>
-            <div class="contact-geo">Staten Island. NY</div>
+            <img :src="contactInfo.avatar" />
+            <div class="contact-name">{{ contactInfo.firstName }} {{ contactInfo.lastName }}</div>
+            <div class="contact-geo">{{ contactInfo.location }}</div>
             <div class="additional-contacts">
-                <div>
+                <div v-if="contactInfo.email">
                     <i class="bi bi-envelope"></i>
-                    <div> a.castiglia@gmail.com </div>
+                    <div> {{ contactInfo.email }} </div>
                 </div>
-                <div>
+                <div v-if="contactInfo.phone">
                     <i class="bi bi-telephone-fill"></i>
-                    <div>589.278.9949</div>
+                    <div>{{ contactInfo.phone }}</div>
                 </div>
-                <div>
+                <div v-if="contactInfo.website">
                     <i class="bi bi-globe"></i>
-                    <div>alexcastiglia.com</div>
+                    <div>{{ contactInfo.website }}</div>
                 </div>
             </div>
         </div>
@@ -46,6 +46,7 @@
 <script>
 import Messages from "@/components/Messages"
 import { socket } from '@/socket'
+import { http } from "@/api/http"
 
 export default {
    components: {
@@ -54,12 +55,39 @@ export default {
    data() {
        return {
            showContactInfo: true,
-           message: ""
+           messages: [],
+           contactInfo: {
+               firstName: "",
+               lastName: "",
+               avatar: "",
+               website: "",
+               phone: "",
+               location: ""
+           }
        }
+   },
+   async created() {
+        const groupId = this.$route.params.id
+        try {
+            const {data} = await http.get(`/groups/${groupId}`)
+            const contact = data.users.find(user => user.userId !== this.$store.state.userId)
+            this.messages = data.messages
+            this.contactInfo = {...contact}
+            socket.emit("joinToRoom", groupId)
+            socket.on("message", (message) => {
+                console.log(this.messages)
+                this.messages.push(message)
+            })
+        } catch(e) {
+
+        }
    },
    methods: {
        handleSubmit() {
-           socket.emit("message", this.message)
+           socket.emit("message", {
+                text: this.message,
+                authorId: this.$store.state.userId
+            })
        }
    }
 }
