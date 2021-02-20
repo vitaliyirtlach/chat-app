@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 
 const defaultState = {
     isAuth: false,
-    id: null,
+    userId: null,
     avatar: null,
     groups: null,
     email: null,

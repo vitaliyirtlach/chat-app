@@ -19,16 +19,16 @@ export class AuthController {
         })
         if (sameEmails) return {message: "This email address is already in use!"}
         const hashedPassword = await hash(password, 10)
-        const user = User.create({
-            firstName,
-            lastName,
-            location,
-            email,
-            groups: [],
-            password: hashedPassword
-        })
+        const user = new User()
+        user.firstName = firstName
+        user.lastName = lastName,
+        user.location = location,
+        user.email = email,
+        user.groups = []
+        user.password = hashedPassword
+        
         await user.save()
-        response.cookie('access_token', createToken(user.id))
+        response.cookie('access_token', createToken(user.userId))
         return user 
     }
     @Post("login")
@@ -36,10 +36,10 @@ export class AuthController {
        const {password, email} = loginUserDto 
        const user = await User.findOne({
            where: { email },
-           relations: ["groups"]
+           relations: ["groups", "groups.users"]
        })
        if (await compare(password, user.password)) {
-            response.cookie('access_token', createToken(user.id))
+            response.cookie('access_token', createToken(user.userId))
             return user
        } return {message: "Invalid password or email address!"}
     }

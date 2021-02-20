@@ -10,7 +10,7 @@ export class AuthMiddleware implements NestMiddleware {
     const token = req.cookies["access_token"]
     if (token) {
       const v: any = verify(token, config().parsed["JWT-SECRET"]);
-      (req as any).user = await User.findOne(v.userId)
+      (req as any).user = await User.findOne(v.userId, {relations: ["groups"]})
       next();
     } else {
        res.send( {message: "Not loggined"} )

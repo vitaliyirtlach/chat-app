@@ -1,10 +1,11 @@
-import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Group } from "./Group"
+import { Message } from "./Message"
 
 @Entity()
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: number
+    userId: number
 
     @Column()
     firstName: string
@@ -24,10 +25,12 @@ export class User extends BaseEntity {
     @ManyToMany(() => Group, group => group.users)
     @JoinTable()
     groups: Group[]
+ 
+    @OneToMany(() => Message, message => message.author) 
+    messages: Message[]
     
     @Column({nullable: true})
     avatar: string
-
    
     @Column({nullable: true})
     phone: string

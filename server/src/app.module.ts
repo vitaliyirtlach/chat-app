@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
+import { GroupsModule } from './groups/groups.module';
 import { MessagesModule } from './messages/messages.module';
 import { AuthMiddleware } from './middleware/auth.middleware';
 import { ProfileModule } from './profile/profile.module';
@@ -11,7 +12,8 @@ import { ProfileModule } from './profile/profile.module';
     TypeOrmModule.forRoot(), 
     MessagesModule,
     AuthModule,
-    ProfileModule
+    ProfileModule,
+    GroupsModule
   ],
   providers: [],
   controllers: [AppController]
@@ -22,6 +24,7 @@ export class AppModule implements NestModule {
     .apply(AuthMiddleware)
     .forRoutes(
       "profile",
+      "groups",
       {path: "auth", method: RequestMethod.GET}
     )
   }

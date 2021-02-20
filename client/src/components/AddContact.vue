@@ -2,7 +2,21 @@
     <div class="add-contact-modal" v-if="isOpen">
         <div class="add-contact-modal-body">
             <div class="close-modal" @click="$emit('modal-close')"><i class="bi bi-x"></i></div>
+            
+            <form class="user-form" @submit.prevent="">
+                <h1 class="form-title">Add contact</h1>
+                <div class="field required">
+                    <div class="field-label">Name</div>
+                    <input placeholder="Example: firstName lastName" />
+                </div>
+                <div class="field">
+                    <div class="field-label">Email address </div>
+                    <input placeholder="Enter your contact email address" />
+                </div>
+                <button class="form-submit" :disabled="!formValuesIsRight" type="submit">Add contact</button>
+            </form>
         </div>
+        
     </div>
 </template>
 
