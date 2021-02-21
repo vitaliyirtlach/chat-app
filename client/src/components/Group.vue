@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="'/t/' + id" class="contact" active-class="contact-active">
+    <router-link v-if="`${user.firstName} ${user.lastName}`.includes(searchCriteria)" :to="'/t/' + id" class="contact" active-class="contact-active">
         <div class="contact-avatar">
             <img :src="user.avatar" />
             <!-- <div class="contact-status-online"></div> -->
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    props: ["id", "user"]
+    props: ["id", "user", "searchCriteria"],
 }
 </script>
 

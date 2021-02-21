@@ -39,7 +39,7 @@
                 </div>
                 <div class="field">
                     <div class="field-label">Website</div>
-                    <input v-model="user.website" placeholder="Location: Country, City" />
+                    <input v-model="user.website" placeholder="Your website url" />
                 </div>
             </div>
             <button class="form-submit" type="submit">Save changes</button>

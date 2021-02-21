@@ -22,8 +22,8 @@
                 <input type="email" @input="changeField($event)" name="email" placeholder="Email Address" />
             </div>
             <div class="field required">
-                <div class="field-label">Where you live?</div>
-                <input type="text" @input="changeField($event)" name="location" placeholder="Country, City" />
+                <div class="field-label">Your location</div>
+                <input @input="changeField($event)" name="location" placeholder="Country, City" />
             </div>
             <div class="field-group">
                 <div class="field required">

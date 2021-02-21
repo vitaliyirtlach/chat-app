@@ -58,22 +58,23 @@ export default {
            }
        }
    },
-   async updated() {
-        const groupId = this.$route.params.id
-        console.log(groupId)
-        try {
-            const {data} = await http.get(`/groups/${groupId}`)
-            const contact = data.users.find(user => user.userId !== this.$store.state.userId)
-            this.messages = data.messages
-            this.contactInfo = {...contact}
-            socket.emit("joinToRoom", groupId)
-            socket.on("message", (message) => {
-                this.messages.push(message)
-                console.log(message)
-            })
-        } catch(e) {
+   watch: {
+       async $route() {
+           const groupId = this.$route.params.id
+            try {
+                const {data} = await http.get(`/groups/${groupId}`)
+                const contact = data.users.find(user => user.userId !== this.$store.state.userId)
+                this.messages = data.messages
+                this.contactInfo = {...contact}
+                socket.emit("joinToRoom", groupId)
+                socket.on("message", (message) => {
+                    this.messages.push(message)
+                    console.log(message)
+                })
+            } catch(e) {
 
-        }
+            }
+       }
    },
    methods: {
        handleSubmit() {

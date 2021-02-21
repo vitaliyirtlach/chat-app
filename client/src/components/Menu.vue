@@ -9,11 +9,13 @@
             </div>
         </div>
         <div class="search">
-            <input type="search" placeholder="Search" />
+            <input @input="changeSearchCriteria($event.target.value)" type="search" placeholder="Search" />
             <button>Search</button>
         </div>
         <div class="contacts">
-            <contact v-for="group of $store.state.groups" 
+            <contact 
+            v-for="group of $store.state.groups" 
+            :searchCriteria="searchCriteria"
             :key="group.id"
             :id="group.id" 
             :user="group.users.find((u) => u.userId !== $store.state.userId)" />
@@ -31,7 +33,13 @@ export default {
   components: { Contact, AddContact }, 
   data() {
       return {
-          isOpen: false
+          isOpen: false,
+          searchCriteria: ""
+      }
+  },
+  methods: {
+      changeSearchCriteria(value) {
+          this.searchCriteria = value
       }
   }
 }
