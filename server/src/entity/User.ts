@@ -1,3 +1,4 @@
+import { defaultAvatar } from "src/default/defaultAvatar"
 import { BaseEntity, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Group } from "./Group"
 import { Message } from "./Message"
@@ -29,7 +30,7 @@ export class User extends BaseEntity {
     @OneToMany(() => Message, message => message.author) 
     messages: Message[]
     
-    @Column({nullable: true})
+    @Column({nullable: true, default: defaultAvatar})
     avatar: string
    
     @Column({nullable: true})
