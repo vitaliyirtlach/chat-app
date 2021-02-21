@@ -19,13 +19,12 @@ export class MessagesGateway {
         message.author = await User.findOne(messageDto.authorId)
         message.group = await Group.findOne(messageDto.groupId)
         await message.save()
-        console.log(message)
-        this.server.sockets.emit("message", message)
+        console.log(messageDto.groupId)
+        this.server.sockets.in(`room ${messageDto.groupId}`).emit("message", message)
     }
 
     @SubscribeMessage('joinToRoom')
     joinToRoom(@MessageBody() roomId: string, @ConnectedSocket() socket: Socket) {
-        console.log(`room ${roomId}`)
         socket.join(`room ${roomId}`)
     }
 }

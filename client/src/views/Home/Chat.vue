@@ -58,8 +58,9 @@ export default {
            }
        }
    },
-   async created() {
+   async updated() {
         const groupId = this.$route.params.id
+        console.log(groupId)
         try {
             const {data} = await http.get(`/groups/${groupId}`)
             const contact = data.users.find(user => user.userId !== this.$store.state.userId)
@@ -78,7 +79,8 @@ export default {
        handleSubmit() {
            socket.emit("message", {
                 text: this.message,
-                authorId: this.$store.state.userId
+                authorId: this.$store.state.userId,
+                groupId: this.$route.params.id
             })
        }
    }
