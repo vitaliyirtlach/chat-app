@@ -25,6 +25,10 @@ const store = createStore({
         },
         newGroup(state, group) {
             state.groups.push(group as never)
+        },
+        newMessage(state, {message, groupId}) { 
+            const group = state.groups.find((group: any) => group.id == groupId);
+            (group as any).messages.push(message)
         }
     }
 })

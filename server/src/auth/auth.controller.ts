@@ -36,7 +36,7 @@ export class AuthController {
        const {password, email} = loginUserDto 
        const user = await User.findOne({
            where: { email },
-           relations: ["groups", "groups.users"]
+           relations: ["groups", "groups.users", "groups.messages", "groups.messages.author"]
        })
        if (await compare(password, user.password)) {
             response.cookie('access_token', createToken(user.userId))

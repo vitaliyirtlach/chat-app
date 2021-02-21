@@ -4,13 +4,12 @@
             <div class="messager-header">
                 <div class="contact-info">
                     <div @click="showContactInfo = !showContactInfo" class="contact-name">{{ contactInfo.firstName }} {{ contactInfo.lastName }}</div>
-                    <div class="contact-status-online"></div>
+                    <!-- <div class="contact-status-online"></div> -->
                     <!-- <div class="contact-status-offline"></div> -->
                 </div>
-                <!-- <div class="contact-status">That's awesome!</div> -->
             </div>
             <Messages :messages="messages"/>
-            <input type="text" @keydown.enter="handleSubmit" v-model="message" placeholder="Start typing your message..." />
+            <input type="text" class="write-message-input" @keydown.enter="handleSubmit" v-model="message" placeholder="Start typing your message..." />
         </div>
 
         <div v-if="showContactInfo" class="user-info">
@@ -38,53 +37,57 @@
 <script>
 import Messages from "@/components/Messages"
 import { socket } from '@/socket'
-import { http } from "@/api/http"
+import { getGroup } from "@/reselects/getGroup"
 
 export default {
-   components: {
-       Messages
-   },
-   data() {
-       return {
-           showContactInfo: true,
-           messages: [],
-           contactInfo: {
-               firstName: "",
-               lastName: "",
-               avatar: "",
-               website: "",
-               phone: "",
-               location: ""
-           }
-       }
-   },
-   watch: {
-       async $route() {
-           const groupId = this.$route.params.id
-            try {
-                const {data} = await http.get(`/groups/${groupId}`)
-                const contact = data.users.find(user => user.userId !== this.$store.state.userId)
-                this.messages = data.messages
-                this.contactInfo = {...contact}
-                socket.emit("joinToRoom", groupId)
-                socket.on("message", (message) => {
-                    this.messages.push(message)
-                    console.log(message)
-                })
-            } catch(e) {
-
+    components: {
+        Messages
+    },
+    data() {
+        return {
+            showContactInfo: true,
+            messages: [],
+            contactInfo: {
+                firstName: "",
+                lastName: "",
+                avatar: "",
+                website: "",
+                phone: "",
+                location: ""
             }
-       }
-   },
-   methods: {
-       handleSubmit() {
-           socket.emit("message", {
+        }
+    },
+    beforeRouteEnter (to, from, next) {
+        getGroup(to.params.id, (group) => {
+            next(wm => wm.setGroup(group))
+        })
+    },
+    beforeRouteUpdate (to, from, next) {
+        getGroup(to.params.id, (group) => {
+            this.setGroup(group)
+            next()
+        })
+    },
+    methods: {
+        handleSubmit() {
+            socket.emit("message", {
                 text: this.message,
                 authorId: this.$store.state.userId,
                 groupId: this.$route.params.id
             })
-       }
-   }
+            this.message = ""
+        },
+        setGroup(group) {
+                const groupId = group.id
+                const contact = group.users.find(user => user.userId !== this.$store.state.userId)
+                this.messages = group.messages
+                this.contactInfo = {...contact}
+                socket.emit("joinToRoom", groupId)
+                socket.on("message", (message) => {
+                    this.$store.commit("newMessage", {message, groupId})
+                })
+        }
+    }
 }
 </script>
 
@@ -113,6 +116,17 @@ export default {
                 font-size: 14px;
                 color: #abb2b9;
             }
+        }
+    }
+    .write-message-input {
+        margin-top: 5vh;
+        width: 100%;
+        border: none;
+        padding: 20px 40px;
+        background: #f0f2f5;
+        color: #9c9c9d;
+        &::placeholder {
+            color: #9c9c9d;
         }
     }
     .messager-header {
@@ -149,19 +163,6 @@ export default {
         div:nth-child(odd) {
             border-bottom: 0.25px solid #abb2b9;
             border-top: 0.25px solid #abb2b9;
-        }
-    }
-    form {
-        margin-top: 2%;
-        input {
-            width: 100%;
-            border: none;
-            padding: 20px 40px;
-            background: #f0f2f5;
-            color: #9c9c9d;
-            &::placeholder {
-                color: #9c9c9d;
-            }
         }
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="messages">
+    <div ref="messages" class="messages">
         <div v-for="message of messages" :key="message.id">
              <div :class="message.author.userId === $store.state.userId ? 'my-message' : 'message'">
                 <img :src="message.author.avatar" />
@@ -17,7 +17,13 @@
 
 <script>
 export default {
-    props: ["messages"]
+    props: ["messages"],
+    updated() {
+        this.$refs.messages.scrollTo({
+            top: this.$refs.messages.scrollHeight,
+            // behavior: 'smooth'
+        })
+    }
 }
 </script>
 
