@@ -9,16 +9,8 @@
                 </div>
                 <!-- <div class="contact-status">That's awesome!</div> -->
             </div>
-
             <Messages :messages="messages"/>
-
-          
-                <input type="text" 
-                    @keydown.enter="handleSubmit" 
-                    v-model="message" 
-                    placeholder="Start typing your message..." 
-                />
-           
+            <input type="text" @keydown.enter="handleSubmit" v-model="message" placeholder="Start typing your message..." />
         </div>
 
         <div v-if="showContactInfo" class="user-info">
@@ -75,8 +67,8 @@ export default {
             this.contactInfo = {...contact}
             socket.emit("joinToRoom", groupId)
             socket.on("message", (message) => {
-                console.log(this.messages)
                 this.messages.push(message)
+                console.log(message)
             })
         } catch(e) {
 

@@ -1,37 +1,17 @@
 <template>
     <div class="messages">
-        <!-- <div class="message">
-            <img src="https://ideapod.com/wp-content/uploads/2017/06/stencil.facebook-post-20.jpg" />
-            <div class="message-body">
-                <div class="message-info">
-                    <div class="message-author">Alex Castiglia</div>
-                    <div class="message-date">07.02.2021</div>
-                </div>
-                <div class="text">Hello! What is your name?fdf sfsdhjf hsjdh fjsdfhsdjfh jsdhj dsf jsd hfsj hfjsdhf jsdhfhfhsdf dsjf hsdjf hdsf hsj fhjfh h fshdhs sjh hjshj dshfj sdhf jsdjsfj hsjfh jshfhfj sdh sdhfjsd hsdjdsjfsjdfhuehfuhuefhu
-                    fsdfsdffdsfsd
-                    fsd
-                    fsdfsdffdsfsdsd
-                    fsd
-                    f sdf
-                </div>
-            </div> 
-        </div> -->
-        <!-- <div class="my-message">
-            <img src="https://ideapod.com/wp-content/uploads/2017/06/stencil.facebook-post-20.jpg" />
-            <div class="message-body">
-                <div class="message-info">
-                    <div class="message-author">Alex Castiglia</div>
-                    <div class="message-date">07.02.2021</div>
-                </div>
-                <div class="text">Hello! What is your name?fdf sfsdhjf hsjdh fjsdfhsdjfh jsdhj dsf jsd hfsj hfjsdhf jsdhfhfhsdf dsjf hsdjf hdsf hsj fhjfh h fshdhs sjh hjshj dshfj sdhf jsdjsfj hsjfh jshfhfj sdh sdhfjsd hsdjdsjfsjdfhuehfuhuefhu
-                    fsdfsdffdsfsd
-                    fsd
-                    fsdfsdffdsfsdsd
-                    fsd
-                    f sdf
-                </div>
-            </div> 
-        </div> -->
+        <div v-for="message of messages" :key="message.id">
+             <div :class="message.author.userId === $store.state.userId ? 'my-message' : 'message'">
+                <img :src="message.author.avatar" />
+                <div class="message-body">
+                    <div class="message-info">
+                        <div class="message-author">{{message.author.firstName}} {{message.author.lastName}}</div>
+                        <div class="message-date">{{message.createdAt}}</div>
+                    </div>
+                    <div class="text">{{message.text}}</div>
+                </div> 
+            </div>
+        </div>
     </div>
 </template>
 

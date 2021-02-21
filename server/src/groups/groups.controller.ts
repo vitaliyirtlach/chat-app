@@ -34,6 +34,6 @@ export class GroupsController {
     }
     @Get("/:id")
     async getGroupById(@Param('id') id: string) {
-        return await Group.findOne(id, {relations: ["users", "messages"]})
+        return await Group.findOne(id, {relations: ["users", "messages", "messages.author"]})
     }
 }

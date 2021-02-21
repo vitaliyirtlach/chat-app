@@ -13,6 +13,9 @@ export class Message extends BaseEntity {
     @ManyToOne(() => User, user => user.messages)
     author: User
 
+    @Column({default: new Date().toLocaleDateString()})
+    createdAt: string
+
     @ManyToOne(() => Group, group => group.messages)
     group: Group
 }
