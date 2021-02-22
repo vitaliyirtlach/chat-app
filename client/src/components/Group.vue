@@ -7,14 +7,14 @@
         </div>
         <div class="contact-info">
             <div class="contact-name">{{ user.firstName }} {{ user.lastName }}</div>
-            <div class="contact-message">How are you?</div>
+            <div class="contact-message">{{ lastMessage }}</div>
         </div>
     </router-link>
 </template>
 
 <script>
 export default {
-    props: ["id", "user", "searchCriteria"],
+    props: ["id", "user", "searchCriteria", "lastMessage"],
 }
 </script>
 
@@ -57,6 +57,7 @@ export default {
         font-size: 14px;
         color:  #d5d8dc;
         margin-top: 5px;
+        margin-left: 15px;
     }
     .contact-info {
         align-items: center;

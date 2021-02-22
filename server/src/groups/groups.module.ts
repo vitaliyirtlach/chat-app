@@ -1,5 +1,5 @@
 import {Module} from "@nestjs/common"
-import { MessagesGateway } from "./messages.gateway";
+import { MessagesGateway } from "./gateways/messages.gateway";
 import { GroupsController } from "./groups.controller";
 
 @Module({

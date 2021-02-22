@@ -15,7 +15,6 @@ export class GroupsController {
                 where: {
                     email: user_email
                 }
-
             })
         } else {
             const [firstName, lastName] = name.split(" ")

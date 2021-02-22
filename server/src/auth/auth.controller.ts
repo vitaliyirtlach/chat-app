@@ -38,7 +38,7 @@ export class AuthController {
            where: { email },
            relations: ["groups", "groups.users", "groups.messages", "groups.messages.author"]
        })
-       if (await compare(password, user.password)) {
+       if (user && await compare(password, user.password)) {
             response.cookie('access_token', createToken(user.userId))
             return user
        } return {message: "Invalid password or email address!"}

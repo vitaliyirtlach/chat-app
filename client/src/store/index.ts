@@ -29,6 +29,10 @@ const store = createStore({
         newMessage(state, {message, groupId}) { 
             const group = state.groups.find((group: any) => group.id == groupId);
             (group as any).messages.push(message)
+        },
+        logout(state) {
+            store.replaceState(defaultState)
+            router.push("/auth/login")
         }
     }
 })

@@ -4,6 +4,12 @@
             <div class="close-modal" @click="$emit('modal-close')"><i class="bi bi-x"></i></div>
             
             <form class="user-form" @submit.prevent="addContact">
+                <div class="notifications">
+                <div class="error" v-if="error.length">
+                    <div @click="error = ''" class="icon"></div> 
+                    <div class="message">{{error}}</div>
+                </div>
+            </div>
                 <h1 class="form-title">Add contact</h1>
                 <div class="field required">
                     <div class="field-label">Name</div>
@@ -22,6 +28,7 @@
 
 <script>
 import {http} from "@/api/http"
+import { socket } from '../socket'
 
 export default {
     props: {
@@ -33,7 +40,8 @@ export default {
     data() {
         return {
             name: "",
-            user_email: ""
+            user_email: "",
+            error: ""
         }
     },
     methods: {
@@ -44,8 +52,12 @@ export default {
                     user_email: this.user_email
                 })
                 this.$store.commit("newGroup", data)
+                this.isOpen = false
+                this.name = ""
+                this.user_email = ""
+
             } catch(e) {
-                console.log(e)
+                this.error = "Incorrect form data or user not found"
             }
         }
     }

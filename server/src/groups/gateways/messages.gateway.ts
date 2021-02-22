@@ -3,12 +3,18 @@ import { Socket, Server } from "socket.io";
 import { Group } from "src/entity/Group";
 import { Message } from "src/entity/Message";
 import { User } from "src/entity/User";
-import { NewMessageDto } from "./dto/new-message.dto";
+import { NewMessageDto } from "../dto/new-message.dto";
 
 @WebSocketGateway()
 export class MessagesGateway {
     @WebSocketServer()
     server: Server
+    @SubscribeMessage('group add')
+    async groupAdded(@MessageBody() group: {personWithCommunicationId: string, group: Group}) {
+        console.log(group.group)
+        this.server.sockets.emit(group.personWithCommunicationId, group.group)
+    }
+
     @SubscribeMessage('message')
     async handleMessage(
         @MessageBody() messageDto: NewMessageDto, 
@@ -19,7 +25,6 @@ export class MessagesGateway {
         message.author = await User.findOne(messageDto.authorId)
         message.group = await Group.findOne(messageDto.groupId)
         await message.save()
-        console.log(messageDto.groupId)
         this.server.sockets.in(`room ${messageDto.groupId}`).emit("message", message)
     }
 

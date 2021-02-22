@@ -13,12 +13,17 @@
             <button>Search</button>
         </div>
         <div class="contacts">
-            <contact 
-            v-for="group of $store.state.groups" 
-            :searchCriteria="searchCriteria"
-            :key="group.id"
-            :id="group.id" 
-            :user="group.users.find((u) => u.userId !== $store.state.userId)" />
+            <div v-if="$store.state.groups.length">
+                <contact 
+                    v-for="group of $store.state.groups" 
+                    :searchCriteria="searchCriteria"
+                    :key="group.id"
+                    :id="group.id" 
+                    :user="group.users.find((u) => u.userId !== $store.state.userId)" 
+                    :lastMessage="group.messages[group.messages.length - 1]?.text.slice(0, 10)"
+                />
+            </div>
+            <div class="empty-groups" v-else>¯\_(ツ)_/¯ </div>
         </div>
         <button class="add-contact" @click="isOpen = true">Add contact</button>
     </div>
@@ -32,6 +37,7 @@ import Contact from './Group.vue'
 export default {
   components: { Contact, AddContact }, 
   data() {
+      console.log(this.$store.state.groups[0].messages[this.$store.state.groups[0].messages.length - 1].text)
       return {
           isOpen: false,
           searchCriteria: ""
@@ -117,6 +123,11 @@ export default {
         background: $theme-color;
         padding: 15px;
         cursor: pointer;
+    }
+
+    .empty-groups {
+        margin: auto;
+        font-size: 22px;
     }
 </style>
 

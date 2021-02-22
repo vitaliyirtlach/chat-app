@@ -4,7 +4,7 @@
         <div class="links">
             <router-link active-class="active" to="/settings"><i class="bi bi-person"></i> User Info</router-link>
         </div>
-        <div class="logout">
+        <div @click="$store.commit('logout')" class="logout">
             <i class="bi bi-box-arrow-in-left"></i> Log out
         </div>
     </div>

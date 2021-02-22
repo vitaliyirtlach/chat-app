@@ -8,8 +8,8 @@
             </div>
         </header>
         <div class="container">
-            <menu-settings />
-            <router-view />
+            <menu-settings></menu-settings>
+            <router-view></router-view>
         </div>
     </div>
 </template>
