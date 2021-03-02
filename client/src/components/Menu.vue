@@ -1,32 +1,32 @@
 <template>
     <div>
         <add-contact v-on:modal-close="isOpen = false" :isOpen="isOpen"/>
-    <div class="menu-container">
-        <div class="profile">
-            <div class="user-name">{{$store.state.firstName}}  {{$store.state.lastName}}</div>
-            <div class="links">
-                <router-link to="/settings" class="bi bi-gear"></router-link>
+        <div class="menu-container">
+            <div class="profile">
+                <div class="user-name">{{$store.state.firstName}}  {{$store.state.lastName}}</div>
+                <div class="links">
+                    <router-link to="/settings" class="bi bi-gear"></router-link>
+                </div>
             </div>
-        </div>
-        <div class="search">
-            <input @input="changeSearchCriteria($event.target.value)" type="search" placeholder="Search" />
-            <button>Search</button>
-        </div>
-        <div class="contacts">
-            <div v-if="$store.state.groups.length">
-                <contact 
-                    v-for="group of $store.state.groups" 
-                    :searchCriteria="searchCriteria"
-                    :key="group.id"
-                    :id="group.id" 
-                    :user="group.users.find((u) => u.userId !== $store.state.userId)" 
-                    :lastMessage="group.messages[group.messages.length - 1]?.text.slice(0, 10)"
-                />
+            <div class="search">
+                <input @input="changeSearchCriteria($event.target.value)" type="search" placeholder="Search" />
+                <button>Search</button>
             </div>
-            <div class="empty-groups" v-else>¯\_(ツ)_/¯ </div>
+            <div class="contacts">
+                <div v-if="$store.state.groups.length">
+                    <contact 
+                        v-for="group of $store.state.groups" 
+                        :searchCriteria="searchCriteria"
+                        :key="group.id"
+                        :id="group.id" 
+                        :user="group.users.find((u) => u.userId !== $store.state.userId)" 
+                        :lastMessage="group.messages[group.messages.length - 1]?.text.slice(0, 10)"
+                    />
+                </div>
+                <div class="empty-groups" v-else>¯\_(ツ)_/¯ </div>
+            </div>
+            <button class="add-contact" @click="isOpen = true"><i class="bi bi-person-plus"></i> Add contact</button>
         </div>
-        <button class="add-contact" @click="isOpen = true">Add contact</button>
-    </div>
     </div>
 </template>
 
@@ -37,7 +37,6 @@ import Contact from './Group.vue'
 export default {
   components: { Contact, AddContact }, 
   data() {
-      console.log(this.$store.state.groups[0].messages[this.$store.state.groups[0].messages.length - 1].text)
       return {
           isOpen: false,
           searchCriteria: ""

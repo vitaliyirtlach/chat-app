@@ -11,15 +11,11 @@
                 </div>
             </div>
                 <h1 class="form-title">Add contact</h1>
-                <div class="field required">
-                    <div class="field-label">Name</div>
-                    <input v-model="name" placeholder="Example: firstName lastName" />
-                </div>
                 <div class="field">
                     <div class="field-label">Email address </div>
                     <input v-model="user_email" placeholder="Enter your contact email address" />
                 </div>
-                <button class="form-submit" :disabled="name.length < 1" type="submit">Add contact</button>
+                <button class="form-submit" :disabled="user_email.length < 1" type="submit">Add contact</button>
             </form>
         </div>
         
@@ -46,18 +42,27 @@ export default {
     },
     methods: {
         async addContact() {
-            try {
-                const {data} = await http.post("/groups/create", {
-                    name: this.name,
-                    user_email: this.user_email
-                })
-                this.$store.commit("newGroup", data)
-                this.isOpen = false
-                this.name = ""
-                this.user_email = ""
-
-            } catch(e) {
-                this.error = "Incorrect form data or user not found"
+            let isRepeat = false;
+            for(const group of this.$store.state.groups) {
+                const u = group.users.find(u => u.email === this.user_email)
+                if (u) {
+                    isRepeat = true
+                    break
+                }                
+            }
+            if (isRepeat) this.error = "This user already in contacts"
+            else {
+                try {
+                    const {data} = await http.post("/groups/create", {
+                        user_email: this.user_email
+                    })
+                    this.$store.commit("newGroup", data)
+                    socket.emit("group add", data)
+                    this.name = ""
+                    this.user_email = ""
+                } catch(e) {
+                    this.error = "Incorrect form data or user not found"
+                }
             }
         }
     }
@@ -78,6 +83,10 @@ export default {
     justify-content: center;
     align-items: center;
     z-index: 8000;
+    .notifications {
+        border-top-left-radius: 30;
+        border-top-right-radius: 30;
+    }
     .add-contact-modal-body {
         width: 90vw;
         height: 90vh;

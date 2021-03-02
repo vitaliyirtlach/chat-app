@@ -9,11 +9,6 @@ import { NewMessageDto } from "../dto/new-message.dto";
 export class MessagesGateway {
     @WebSocketServer()
     server: Server
-    @SubscribeMessage('group add')
-    async groupAdded(@MessageBody() group: {personWithCommunicationId: string, group: Group}) {
-        console.log(group.group)
-        this.server.sockets.emit(group.personWithCommunicationId, group.group)
-    }
 
     @SubscribeMessage('message')
     async handleMessage(

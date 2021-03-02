@@ -4,7 +4,18 @@
 
 <script>
 import "@/utils/FormStyles.scss";
-export default {}
+import { socket } from './socket';
+import store from "./store"
+socket.on("group add", group => {
+  group.users.findOne((user) => {
+    if (user.userId === store.state.userId) {
+      store.commit("newGroup", group)
+    }
+  })
+})
+export default {
+
+}
 </script>
 <style lang="scss">
   @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
