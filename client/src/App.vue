@@ -7,7 +7,7 @@ import "@/utils/FormStyles.scss";
 import { socket } from './socket';
 import store from "./store"
 socket.on("group add", group => {
-  group.users.findOne((user) => {
+  group.users.find((user) => {
     if (user.userId === store.state.userId) {
       store.commit("newGroup", group)
     }

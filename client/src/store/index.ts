@@ -1,6 +1,6 @@
 import router from '@/router'
 import { createStore } from 'vuex'
-
+import { socket } from "@/socket"
 const defaultState = {
     isAuth: false,
     userId: null,
@@ -27,8 +27,8 @@ const store = createStore({
             state.groups.push(group as never)
         },
         newMessage(state, {message, groupId}) { 
-            const group = state.groups.find((group: any) => group.id == groupId);
-            (group as any).messages.push(message)
+            const group: any = state.groups.find((group: any) => group.id == groupId);
+            if (!group.messages.find((mes: any) => mes.id === message.id)) group.messages.push(message)
         },
         logout(state) {
             store.replaceState(defaultState)

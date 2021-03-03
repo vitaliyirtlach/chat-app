@@ -21,7 +21,6 @@ export default {
     updated() {
         this.$refs.messages.scrollTo({
             top: this.$refs.messages.scrollHeight,
-            // behavior: 'smooth'
         })
     }
 }

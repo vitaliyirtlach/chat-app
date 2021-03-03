@@ -47,6 +47,7 @@ export default {
         return {
             showContactInfo: true,
             messages: [],
+            message: "",
             contactInfo: {
                 firstName: "",
                 lastName: "",
@@ -70,22 +71,23 @@ export default {
     },
     methods: {
         handleSubmit() {
-            socket.emit("message", {
-                text: this.message,
-                authorId: this.$store.state.userId,
-                groupId: this.$route.params.id
-            })
-            this.message = ""
+            if (this.message.length >= 1) {
+                socket.emit("message", {
+                    text: this.message,
+                    authorId: this.$store.state.userId,
+                    groupId: this.$route.params.id
+                })
+                this.message = ""
+            }
         },
         setGroup(group) {
-                const groupId = group.id
-                const contact = group.users.find(user => user.userId !== this.$store.state.userId)
-                this.messages = group.messages
-                this.contactInfo = {...contact}
-                socket.emit("joinToRoom", groupId)
-                socket.on("message", (message) => {
-                    this.$store.commit("newMessage", {message, groupId})
-                })
+            const groupId = group.id
+            const contact = group.users.find(user => user.userId !== this.$store.state.userId)
+            this.messages = group.messages
+            this.contactInfo = {...contact}
+            socket.on(`message in group: ${groupId}`, (data) => { 
+                this.$store.commit("newMessage", data)
+            })
         }
     }
 }

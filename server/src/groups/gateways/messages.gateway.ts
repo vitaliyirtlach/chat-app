@@ -13,18 +13,15 @@ export class MessagesGateway {
     @SubscribeMessage('message')
     async handleMessage(
         @MessageBody() messageDto: NewMessageDto, 
-        @ConnectedSocket() socket: Socket
     ) {
         const message = new Message()
+        const group = await Group.findOne(messageDto.groupId, {relations: ["users"]})
         message.text = messageDto.text
         message.author = await User.findOne(messageDto.authorId)
-        message.group = await Group.findOne(messageDto.groupId)
+        message.group = group
         await message.save()
-        this.server.sockets.in(`room ${messageDto.groupId}`).emit("message", message)
-    }
-
-    @SubscribeMessage('joinToRoom')
-    joinToRoom(@MessageBody() roomId: string, @ConnectedSocket() socket: Socket) {
-        socket.join(`room ${roomId}`)
+        const event = `message in group: ${group.id}`
+        const data = {message, groupId: messageDto.groupId}
+        this.server.sockets.emit(event, data)
     }
 }
