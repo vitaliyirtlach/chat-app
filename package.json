@@ -4,9 +4,7 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "start:server": "cd server && npm run start:dev",
-    "start:client": "cd client && npm run serve",
-    "start": "concurrently \" npm run start:server \" \" npm run start:client \""
+    "start": "lerna run start"
   },
   "keywords": [
     "vue",
@@ -15,11 +13,6 @@
   "author": "Vitaliy Irtlach <vitaliyirtlach@gmail.com>, ...",
   "license": "ISC",
   "devDependencies": {
-    "@types/cookie-parser": "^1.4.2",
-    "concurrently": "^5.3.0",
-    "cookie-parser": "^1.4.5",
-    "node-sass": "^5.0.0",
-    "sass-loader": "^11.0.1"
-  },
-  "dependencies": {}
+    "lerna": "^4.0.0"
+  }
 }
